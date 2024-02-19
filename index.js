@@ -12,9 +12,9 @@ database();
 app.use(express.json());
 app.use(cors());
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong", err });
+  res.status(500).json({ error: "Something went wrong" });
 });
 
 app.use("/inventories", InventoryRouter);

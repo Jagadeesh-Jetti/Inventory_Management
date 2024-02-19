@@ -23,4 +23,4 @@ const database = () => {
   }
 };
 
-module.exports = databse;
+module.exports = database;
