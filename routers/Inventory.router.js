@@ -17,7 +17,9 @@ InventoryRouter.post("/", async (req, res) => {
   try {
     const inventoryAdded = new Inventory({ name, quantity, price, category });
     await inventoryAdded.save();
-    res.status(201).json({ message: "Inventory added succesfully" });
+    res
+      .status(201)
+      .json({ message: "Inventory added succesfully", data: inventoryAdded });
   } catch (error) {
     res.status(500).json({ error: "Error while adding the inventory" });
   }
