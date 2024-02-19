@@ -17,6 +17,9 @@ app.use((err, req, res) => {
   res.status(500).json({ error: "Something went wrong", err });
 });
 
+app.use("/inventories", InventoryRouter);
+app.use("/sales", SaleRouter);
+
 app.get("/", (req, res) => {
   res.send("Inventory Management Backend");
 });
