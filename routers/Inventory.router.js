@@ -1,7 +1,7 @@
 const express = require("express");
 
 const InventoryRouter = express.Router();
-const { Inventory } = require("../models/Inventory.model");
+const Inventory = require("../models/Inventory.model");
 
 InventoryRouter.get("/", async (req, res) => {
   try {
