@@ -59,7 +59,7 @@ InventoryRouter.delete("/:id", async (req, res) => {
         error: "Couldn't find the inventory to delete",
       });
     } else {
-      res.status(200).json({
+      res.status(201).json({
         message: "Deleted the inventory successfully",
         data: inventoryDeleted,
       });
