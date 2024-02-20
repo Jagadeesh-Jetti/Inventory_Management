@@ -39,12 +39,10 @@ InventoryRouter.put("/:id", async (req, res) => {
     if (!inventoryUpdated) {
       res.status(404).json({ error: "Couldn't find the inventory to update" });
     } else {
-      res
-        .status(201)
-        .json({
-          message: "Inventory updated successfully",
-          data: inventoryUpdated,
-        });
+      res.status(201).json({
+        message: "Inventory updated successfully",
+        data: inventoryUpdated,
+      });
     }
   } catch (error) {
     res.status(500).json({ error: "Error while updating the inventory" });
@@ -61,7 +59,7 @@ InventoryRouter.delete("/:id", async (req, res) => {
         error: "Couldn't find the inventory to delete",
       });
     } else {
-      res.status(204).json({
+      res.status(200).json({
         message: "Deleted the inventory successfully",
         data: inventoryDeleted,
       });
