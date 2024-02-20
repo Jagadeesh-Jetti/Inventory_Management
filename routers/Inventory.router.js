@@ -19,7 +19,7 @@ InventoryRouter.post("/", async (req, res) => {
     await inventoryAdded.save();
     res
       .status(201)
-      .json({ message: "Inventory added succesfully", data: inventoryAdded });
+      .json({ message: "Inventory added successfully", data: inventoryAdded });
   } catch (error) {
     res.status(500).json({ error: "Error while adding the inventory" });
   }
@@ -37,9 +37,14 @@ InventoryRouter.put("/:id", async (req, res) => {
     );
 
     if (!inventoryUpdated) {
-      res.status(404).json({ error: "Couldnt find the inventory to update" });
+      res.status(404).json({ error: "Couldn't find the inventory to update" });
     } else {
-      res.status(201).json({ message: "Inventory updated successfully" });
+      res
+        .status(201)
+        .json({
+          message: "Inventory updated successfully",
+          data: inventoryUpdated,
+        });
     }
   } catch (error) {
     res.status(500).json({ error: "Error while updating the inventory" });
@@ -52,9 +57,14 @@ InventoryRouter.delete("/:id", async (req, res) => {
     const inventoryDeleted = await Inventory.findByIdAndDelete(inventoryId);
 
     if (!inventoryDeleted) {
-      res.status(404).json({ error: "Couldnt find the inventory to delete" });
+      res.status(404).json({
+        error: "Couldn't find the inventory to delete",
+      });
     } else {
-      res.status(500).json({ message: "Deleted the inventory successfully" });
+      res.status(204).json({
+        message: "Deleted the inventory successfully",
+        data: inventoryDeleted,
+      });
     }
   } catch (error) {
     res.status(500).json({ error: "Error while deleting the inventory" });
