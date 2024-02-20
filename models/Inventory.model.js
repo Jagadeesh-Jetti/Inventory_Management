@@ -16,7 +16,6 @@ const inventorySchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
