@@ -13,12 +13,14 @@ SaleRouter.get("/", async (req, res) => {
 });
 
 SaleRouter.post("/", async (req, res) => {
-  const { name, quantity, price } = req.body;
+  const { name, quantity, price, category } = req.body;
   try {
-    if (name && quantity && price) {
-      const saleAdded = new Sale({ name, quantity, price });
+    if (name && quantity && price && category) {
+      const saleAdded = new Sale({ name, quantity, price, category });
       await saleAdded.save();
-      res.status(201).json({ message: "Sale added to DB successfully" });
+      res
+        .status(201)
+        .json({ message: "Sale added to DB successfully", data: saleAdded });
     } else {
       res.status(400).json({ error: "Missing required fields" });
     }
@@ -54,7 +56,7 @@ SaleRouter.delete("/:id", async (req, res) => {
     if (!saleDeleted) {
       res.status(404).json({ error: "Could not find the sale to delete" });
     } else {
-      res.status(200).json({ message: "Sale deleted successfully" });
+      res.status(204).send();
     }
   } catch (error) {
     res.status(500).json({ error: "Error while deleting the sale" });
